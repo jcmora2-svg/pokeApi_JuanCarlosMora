@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      PokeDex Móvil
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <!-- Indicador de carga -->
+  <div *ngIf="loading" class="ion-text-center ion-padding">
+    <ion-spinner name="crescent" color="primary"></ion-spinner>
+    <p>Cargando Pokemones...</p>
+  </div>
+
+  <ion-list *ngIf="!loading">
+    <ion-item *ngFor="let poke of pokemons" [routerLink]="['/detail', poke.id]" detail="true" button>
+      <ion-thumbnail slot="start">
+        <img [src]="poke.image" [alt]="poke.name" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ poke.name | titlecase }}</h2>
+        <p>ID: #{{ poke.id }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
